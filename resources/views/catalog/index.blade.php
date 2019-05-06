@@ -1,4 +1,4 @@
-@extends('layouts.master')
+    @extends('layouts.master')
 @section('content')
 <h2 style="color: black;">Catalogo</h2>
 
@@ -13,20 +13,22 @@
 @endif
 
     <div class="row">
-
         @foreach( $arrayPeliculas as $key => $pelicula )
-        <div style="text-decoration: none !important;" class="col-xs-6 col-sm-4 col-md-3 text-center">
+            <div class="card">
+                <img src="{{$pelicula->poster}}" id="img-{{$pelicula->id}}" style="height:200px"/>
+                    <div class="card-body">
+                    <h5 class="card-title">{{$pelicula->title}}</h5>
+                    <p class="card-text">{{$pelicula->synopsis}}</p>
+                    <a href="{{ url('/catalog/show/' . $pelicula->id ) }}">Link</a>
+                </div>
+            </div>
 
-            <a href="{{ url('/catalog/show/' . $pelicula->id ) }}">
-                <img src="{{$pelicula->poster}}" style="height:200px"/>
-                <h4 class="text-secondary" style="min-height:45px;margin:5px 0 10px 0">
-                    {{$pelicula->title}}
-                </h4>
-            </a>
 
-        </div>
+                <div class="card">
+
+                </div>
+
         @endforeach
-
     </div>
 
 @stop
