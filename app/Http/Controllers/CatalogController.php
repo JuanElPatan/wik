@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Routing\Controller;
 use App\Movie;
 use DB;
+use GuzzleHttp\Client;
 
 class CatalogController extends Controller
 {
@@ -21,6 +22,16 @@ class CatalogController extends Controller
         } else {
             return view('auth.login');
         }
+
+        /*if(Auth::user()) {
+            $client = new GuzzleHttp\Client();
+            $res = $client->get('https://kitsu.io/api/edge/anime');
+            $array = json_decode($res->getBody());
+            return view('catalog.index', $array);
+        } else {
+            return view('auth.login');
+        }*/
+
     }
 
     public function getShow($id) {
@@ -82,4 +93,17 @@ class CatalogController extends Controller
             return view('auth.login');
         }
     }
+
+    public function saveApiData() {
+        $client = new Client();
+        $res = $client->request('POST', 'https://kitsu.io/api/edge/anime');
+        echo $res->getStatusCode();
+        // 200
+        echo $res->getHeader('content-type');
+        // 'application/json; charset=utf8'
+        echo $res->getBody();
+        // {"type":"User"...'
+    }
+
+
 }
