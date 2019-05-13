@@ -15,10 +15,15 @@
     <div class="row">
         @foreach( $arrayPeliculas as $key => $pelicula )
             <div class="card">
-                <img src="{{$pelicula->poster}}" id="img-{{$pelicula->id}}" style="height:200px"/>
+                    @if (asset($pelicula->poster))
+                        <img src="{{$pelicula->poster}}" id="img-{{$pelicula->id}}" style="height:400px"/>
+                    @else
+                        <img src="{{asset("img/err.jpg")}}" id="img-err"/>
+                    @endif
                     <div class="card-body">
                     <h5 class="card-title">{{$pelicula->title}}</h5>
                     <p class="card-text">{{$pelicula->synopsis}}</p>
+
                     <a href="{{ url('/catalog/show/' . $pelicula->id ) }}">Link</a>
                 </div>
             </div>
