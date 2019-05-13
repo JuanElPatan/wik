@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Routing\Controller;
 use App\Movie;
 use DB;
+use GuzzleHttp\Exception\GuzzleException;
+use GuzzleHttp\Client;
 
 class AnimeController extends Controller
 {
@@ -17,7 +19,9 @@ class AnimeController extends Controller
 
     public function getIndex() {
         if(Auth::user()) {
-            return view('anime.index', array('arrayPeliculas' => DB::table('movies')->orderBy('id', 'asc')->get()));
+            $client = new Client(); //GuzzleHttp\Client
+            $result = $client->get('https://kitsu.io/api/edge/anime');
+            return view('anime.index', array('arrayPeliculas' => DB::table('movies')->orderBy('id', 'asc')->get(), 'result' => $result->getBody()));
         } else {
             return view('auth.login');
         }
