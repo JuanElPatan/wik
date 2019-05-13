@@ -40,3 +40,6 @@ Route::get('/home', 'HomeController@getHome')->name('home');
 Auth::routes();
 
 Route::get('/home', 'HomeController@getHome')->name('home');
+
+Route::get('post','DataController@postRequest');
+Route::get('get','DataController@getRequest');
