@@ -7,7 +7,7 @@
 
 @endphp
 
-<h2 style="color: black;">Catalogo</h2>
+<h2 style="color: black;">Catalogo de Anime</h2>
 
 <hr/>
 
@@ -33,7 +33,7 @@
                     <h5 class="card-title">{{$anime->attributes->titles->en_jp}}</h5>
                     <p class="card-text">{{$anime->attributes->synopsis}}</p>
 
-                    <a href="{{ url('/catalog/show/' . $anime->id ) }}">Link</a>
+                    <a href="{{ url('/anime/show/' . $anime->id ) }}">Link</a>
                 </div>
             </div>
 
