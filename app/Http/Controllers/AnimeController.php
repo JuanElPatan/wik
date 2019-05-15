@@ -43,7 +43,12 @@ class AnimeController extends Controller
 
     public function getShow($id) {
         if(Auth::user()) {
-            return view('anime.show', array('id' => $id, 'pelicula' => DB::table('movies')->having('id', $id)->orderBy('id', 'asc')->first()));
+            $client = new Client();
+            $res = $client->get('kitsu.io/api/edge/anime/' . $id . '');
+
+            $animeAct = json_decode($res->getBody());
+
+            return view('anime.show', array('animeAct' => $animeAct->data));
         } else {
             return view('auth.login');
         }
