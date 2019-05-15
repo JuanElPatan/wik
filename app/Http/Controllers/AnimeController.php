@@ -19,9 +19,13 @@ class AnimeController extends Controller
 
     public function getIndex() {
         if(Auth::user()) {
-            $client = new Client(); //GuzzleHttp\Client
-            $result = $client->get('https://kitsu.io/api/edge/anime');
-            return view('anime.index', array('arrayPeliculas' => DB::table('movies')->orderBy('id', 'asc')->get(), 'result' => $result->getBody()));
+
+            $client = new Client();
+            $res = $client->get('kitsu.io/api/edge/anime?page[limit]=20');
+
+            $animeJSON = json_decode($res->getBody());
+
+            return view('anime.index', array('animeJSON' => $animeJSON->data));
         } else {
             return view('auth.login');
         }
