@@ -4,12 +4,13 @@
 @php
 
     $client = new GuzzleHttp\Client();
-    $res = $client->get('https://kitsu.io/api/edge/anime');
+    $res = $client->get('kitsu.io/api/edge/anime');
     //echo $res->getStatusCode();
+    //echo $res->getHeader('content-type')[0];
 
-    $animes = $res->getBody();
+    $animeJSON = json_decode($res->getBody());
 
-    echo $animes->data[0].attributes.posterImage.original;
+    //echo $animeJSON->data[0]->id
 
 @endphp
 
@@ -30,15 +31,15 @@
         @foreach( $arrayPeliculas as $key => $anime )
             <div class="card">
                     @if (asset($anime->poster))
-                        <img src="{{$anime->poster}}" id="img-{{$anime->id}}" style="height:400px"/>
+                        <img src="{{$animeJSON->data[0]->attributes->posterImage->large}}" id="img-{{$animeJSON->data[0]->id}}" style="height:400px"/>
                     @else
                         <img src="{{asset("img/err.jpg")}}" id="img-err"/>
                     @endif
                     <div class="card-body">
-                    <h5 class="card-title">{{$anime->title}}</h5>
-                    <p class="card-text">{{$anime->synopsis}}</p>
+                    <h5 class="card-title">{{$animeJSON->data[0]->attributes->titles->en}}</h5>
+                    <p class="card-text">{{$animeJSON->data[0]->attributes->synopsis}}</p>
 
-                    <a href="{{ url('/catalog/show/' . $anime->id ) }}">Link</a>
+                    <a href="{{ url('/catalog/show/' . $animeJSON->data[0]->id ) }}">Link</a>
                 </div>
             </div>
 
