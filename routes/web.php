@@ -21,17 +21,29 @@ Route::get('/', 'HomeController@getHome');
 //     return view('auth.logout');
 // });
 
-Route::get('/catalog', 'CatalogController@getIndex');
+Route::get('/anime', 'AnimeController@getIndex')->name('animeIn');
 
-Route::get('/catalog/show/{id}', 'CatalogController@getShow');
+Route::get('/anime/show/{id}', 'AnimeController@getShow');
 
-Route::get('/catalog/create', 'CatalogController@getCreate');
+Route::get('/anime/create', 'AnimeController@getCreate');
 
-Route::post('/catalog/create', 'CatalogController@postCreate');
+Route::post('/anime/create', 'AnimeController@postCreate');
 
-Route::get('/catalog/edit/{id}', 'CatalogController@getEdit');
+Route::get('/anime/edit/{id}', 'AnimeController@getEdit');
 
-Route::post('/catalog/edit/{id}', 'CatalogController@postEdit');
+Route::post('/anime/edit/{id}', 'AnimeController@postEdit');
+
+Route::get('/games', 'GamesController@getIndex')->name('gamesIn');
+
+Route::get('/games/show/{id}', 'GamesController@getShow');
+
+Route::get('/games/create', 'GamesController@getCreate');
+
+Route::post('/games/create', 'GamesController@postCreate');
+
+Route::get('/games/edit/{id}', 'GamesController@getEdit');
+
+Route::post('/games/edit/{id}', 'GamesController@postEdit');
 
 Auth::routes();
 
@@ -40,3 +52,8 @@ Route::get('/home', 'HomeController@getHome')->name('home');
 Auth::routes();
 
 Route::get('/home', 'HomeController@getHome')->name('home');
+
+Route::post('/nav', 'HomeController@getIndexes')->name('difInd');
+
+Route::get('post','DataController@postRequest');
+Route::get('get','DataController@getRequest');

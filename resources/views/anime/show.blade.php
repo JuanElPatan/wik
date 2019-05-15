@@ -41,10 +41,10 @@
                 @endif
             </div>
             <div class="col-md-4">
-                <a class="btn btn-warning text-white" href="{{url('/catalog/edit/' . $pelicula->id)}}"><i class="fas fa-pencil-alt"></i> Editar película</a>
+                <a class="btn btn-warning text-white" href="{{url('/anime/edit/' . $pelicula->id)}}"><i class="fas fa-pencil-alt"></i> Editar película</a>
             </div>
             <div class="col-md-4">
-                <a class="btn btn-outline-dark text-dark" href="{{url('/catalog')}}"><i class="fas fa-angle-left"></i> Volver al listado</a>
+                <a class="btn btn-outline-dark text-dark" href="{{url('/anime')}}"><i class="fas fa-angle-left"></i> Volver al listado</a>
             </div>
         </div>
     </div>
