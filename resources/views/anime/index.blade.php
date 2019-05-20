@@ -31,9 +31,13 @@
 
                 <div class="card" style="width: 18rem;">
                     @if ($anime->attributes->posterImage->medium)
-                        <img src="{{$anime->attributes->posterImage->medium}}" id="img-{{$anime->id}}" width="100%" alt="{{$anime->attributes->titles->en_jp}}"/>
+                        <a href="{{ url('/anime/show/' . $anime->id ) }}">
+                            <img src="{{$anime->attributes->posterImage->medium}}" id="img-{{$anime->id}}" width="100%" alt="{{$anime->attributes->titles->en_jp}}"/>
+                        </a>
                     @else
-                        <img src="{{asset("img/err.jpg")}}" id="img-err" alt="{{$anime->attributes->titles->en_jp}}"/>
+                        <a href="{{ url('/anime/show/' . $anime->id ) }}">
+                            <img src="{{asset("img/err.jpg")}}" id="img-err" alt="{{$anime->attributes->titles->en_jp}}"/>
+                        </a>
                     @endif
                     <div class="card-body">
                         <h5 class="card-title">{{$anime->attributes->titles->en_jp}}</h5>

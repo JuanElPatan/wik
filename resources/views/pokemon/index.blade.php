@@ -29,9 +29,13 @@
 
                     <div class="card text-center" style="width: 18rem;">
                         @if (asset($pokemon->imageUrl))
-                            <img class="card-img-top" src="{{ $pokemon->imageUrl }}" alt="{{ $pokemon->name }}">
+                            <a href="{{ url('/pokemon/show/' . $pokemon->id ) }}" class="card-link">
+                                <img class="card-img-top" src="{{ $pokemon->imageUrl }}" alt="{{ $pokemon->name }}">
+                            </a>
                         @else
-                            <img class="card-img-top" src="{{asset("img/err.jpg")}}" id="img-err" alt="{{ $pokemon->name }}"/>
+                            <a href="{{ url('/pokemon/show/' . $pokemon->id ) }}" class="card-link">
+                                <img class="card-img-top" src="{{asset("img/err.jpg")}}" id="img-err" alt="{{ $pokemon->name }}"/>
+                            </a>
                         @endif
                         <div class="card-body">
                             @if (isset($pokemon->name))

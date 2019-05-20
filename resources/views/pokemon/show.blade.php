@@ -13,10 +13,6 @@
         </a>
     </div>
     <div class="col-md-8">
-        <div class="col-md-6 offset-md-8">
-            <button class="btn btn-primary">Añadir a favoritos</button>
-        </div>
-
         {{-- TODO: Datos de la película --}}
         @if(isset($pokeJSON->hp))
             <h1>{{$pokeJSON->name}} - {{$pokeJSON->hp}}<sup>hp</sup></h1>
@@ -87,7 +83,10 @@
         @endif
 
         <div class="row text-center">
-            <div class="col-md-12">
+            <div class="col-md-6">
+                <button class="btn btn-primary">Añadir a favoritos</button>
+            </div>
+            <div class="col-md-6">
                 <a class="btn btn-outline-dark text-dark" href="{{url('/pokemon')}}"><i class="fas fa-angle-left"></i> Volver al listado</a>
             </div>
         </div>
