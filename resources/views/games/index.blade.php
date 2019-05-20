@@ -14,12 +14,16 @@
 
     <div class="container">
 
+        <form role="form" method="GET" action="{{ action('GamesController@getIndex') }}" class="row">
+            <div class="col-md-11">
+                <input type="text" class="form-control" name="pokemon" placeholder="Nombre del Pokemon"/>
+            </div>
+            <div class="col-md-1">
+                <input type="submit" name="consult" value="Buscar" class="send btn"/>
+            </div>
+        </form>
+        <br>
         <div class="row">
-
-            <form role="form" method="GET" action="{{ action('GamesController@getIndex') }}" class="row">
-                <input type="text" name="pokemon" placeholder="Nombre del Pokemon"/>
-            </form>
-
             <div class="card-columns">
                 @foreach( $pokeJSON as $key => $pokemon )
 
