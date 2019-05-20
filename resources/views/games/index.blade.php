@@ -27,9 +27,15 @@
                             <h5 class="card-title">{{ $pokemon->name }}</h5>
                         </div>
                         <ul class="list-group list-group-flush">
-                            <li class="list-group-item">Rarity: {{ $pokemon->rarity }}</li>
-                            <li class="list-group-item">Series: {{ $pokemon->series }}</li>
-                            <li class="list-group-item">Set: {{ $pokemon->set }}</li>
+                            @if (isset($pokemon->rarity))
+                                <li class="list-group-item">Rarity: {{ $pokemon->rarity }}</li>
+                            @endif
+                            @if (isset($pokemon->series))
+                                <li class="list-group-item">Series: {{ $pokemon->series }}</li>
+                            @endif
+                            @if (isset($pokemon->set))
+                                <li class="list-group-item">Set: {{ $pokemon->set }}</li>
+                            @endif
                         </ul>
                         <div class="card-body">
                             <a href="{{ url('/games/show/' . $pokemon->id ) }}" class="card-link">See More</a>
