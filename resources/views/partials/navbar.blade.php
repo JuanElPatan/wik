@@ -20,13 +20,17 @@
                     <li class="nav-item">
                         <div style="display:inline">
                             @if (substr(Route::getFacadeRoot()->current()->uri(), 0, 5) == 'games')
-                                <a class="btn btn-link nav-link" style="display:inline;cursor:pointer" href="{{ route('animeIn') }} ">
-                                    Anime
-                                </a>
+                                <form action="{{ route('animeIn') }}" method="GET" style="display:inline">
+                                    <button type="submit" class="btn btn-link nav-link" style="display:inline;cursor:pointer">
+                                        Anime
+                                    </button>
+                                </form>
                             @elseif (substr(Route::getFacadeRoot()->current()->uri(), 0, 5) == 'anime')
-                                <a class="btn btn-link nav-link" style="display:inline;cursor:pointer" href="{{ route('gamesIn') }} ">
-                                    Pokémons
-                                </a>
+                                <form action="{{ route('gamesIn') }}" method="GET" style="display:inline">
+                                    <button type="submit" class="btn btn-link nav-link" style="display:inline;cursor:pointer">
+                                        Pokémons
+                                    </button>
+                                </form>
                             @endif
                         <div>
                     </li>
