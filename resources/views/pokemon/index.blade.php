@@ -1,6 +1,6 @@
     @extends('layouts.master')
 @section('content')
-<h2 style="color: black;">Pokemon</h2>
+<h2 style="color: black;">Pokémon Catalogue</h2>
 
 <hr/>
 
@@ -34,7 +34,9 @@
                             <img class="card-img-top" src="{{asset("img/err.jpg")}}" id="img-err" alt="{{ $pokemon->name }}"/>
                         @endif
                         <div class="card-body">
-                            <h5 class="card-title">{{ $pokemon->name }}</h5>
+                            @if (isset($pokemon->name))
+                                <h5 class="card-title">{{ $pokemon->name }}</h5>
+                            @endif
                         </div>
                         <ul class="list-group list-group-flush">
                             @if (isset($pokemon->rarity))
