@@ -7,6 +7,7 @@ use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Input;
 use Illuminate\Routing\Controller;
 use App\Movie;
 use DB;
@@ -18,10 +19,23 @@ class AnimeController extends Controller
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
     public function getIndex() {
+
+        $anime = Input::get('anime');
+
         if(Auth::user()) {
 
             $client = new Client();
-            $res = $client->get('kitsu.io/api/edge/anime?page[limit]=20');
+
+            if($anime=='') {
+
+
+                $res = $client->get('https://kitsu.io/api/edge/anime?page[limit]=20');
+
+            } else {
+
+                $res = $client->get('https://kitsu.io/api/edge/anime?page[limit]=20&filter[text]=$'.$anime);
+
+            }
 
             $animeJSON = json_decode($res->getBody());
 

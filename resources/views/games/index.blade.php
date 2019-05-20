@@ -13,7 +13,13 @@
 @endif
 
     <div class="container">
+
         <div class="row">
+
+            <form role="form" method="GET" action="{{ action('GamesController@getIndex') }}" class="row">
+                <input type="text" name="pokemon" placeholder="Nombre del Pokemon"/>
+            </form>
+
             <div class="card-columns">
                 @foreach( $pokeJSON as $key => $pokemon )
 

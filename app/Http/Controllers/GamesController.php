@@ -7,6 +7,7 @@ use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Input;
 use Illuminate\Routing\Controller;
 use App\Movie;
 use DB;
@@ -18,10 +19,13 @@ class GamesController extends Controller
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
     public function getIndex() {
+
+        $pokemon = Input::get('pokemon');
+
         if(Auth::user()) {
 
             $client = new Client();
-            $res = $client->get('https://api.pokemontcg.io/v1/cards');
+            $res = $client->get('https://api.pokemontcg.io/v1/cards?name='.$pokemon);
 
             $pokeJSON = json_decode($res->getBody());
 

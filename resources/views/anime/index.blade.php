@@ -15,6 +15,10 @@
 
     <div class="row">
 
+        <form role="form" method="GET" action="{{ action('AnimeController@getIndex') }}" class="row">
+            <input type="text" name="anime" placeholder="Nombre del anime"/>
+        </form>
+
         @foreach( $animeJSON as $key => $anime )
 
             <div class="card">
