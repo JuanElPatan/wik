@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Routing\Controller;
 use App\Movie;
 use DB;
+use GuzzleHttp\Exception\GuzzleException;
+use GuzzleHttp\Client;
 
 class GamesController extends Controller
 {
@@ -17,7 +19,13 @@ class GamesController extends Controller
 
     public function getIndex() {
         if(Auth::user()) {
-            return view('games.index', array('arrayPeliculas' => DB::table('movies')->orderBy('id', 'asc')->get()));
+
+            $client = new Client();
+            $res = $client->get('https://api.pokemontcg.io/v1/cards');
+
+            $pokeJSON = json_decode($res->getBody());
+
+            return view('games.index', array('pokeJSON' => $pokeJSON->cards));
         } else {
             return view('auth.login');
         }
@@ -25,7 +33,12 @@ class GamesController extends Controller
 
     public function getShow($id) {
         if(Auth::user()) {
-            return view('games.show', array('id' => $id, 'pelicula' => DB::table('movies')->having('id', $id)->orderBy('id', 'asc')->first()));
+            $client = new Client();
+            $res = $client->get('https://api.pokemontcg.io/v1/cards?id=' . $id);
+
+            $pokeJSON = json_decode($res->getBody());
+
+            return view('games.show', array('pokeJSON' => $pokeJSON->cards));
         } else {
             return view('auth.login');
         }

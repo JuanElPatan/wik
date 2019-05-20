@@ -12,28 +12,32 @@
 
 @endif
 
-    <div class="row">
-        @foreach( $arrayPeliculas as $key => $pelicula )
-            <div class="card">
-                    @if (asset($pelicula->poster))
-                        <img src="{{$pelicula->poster}}" id="img-{{$pelicula->id}}" style="height:400px"/>
-                    @else
-                        <img src="{{asset("img/err.jpg")}}" id="img-err"/>
-                    @endif
-                    <div class="card-body">
-                    <h5 class="card-title">{{$pelicula->title}}</h5>
-                    <p class="card-text">{{$pelicula->synopsis}}</p>
+    <div class="container">
+        <div class="row">
+            <div class="card-columns">
+                @foreach( $pokeJSON as $key => $pokemon )
 
-                    <a href="{{ url('/games/show/' . $pelicula->id ) }}">Link</a>
-                </div>
+                    <div class="card text-center" style="width: 18rem;">
+                        @if (asset($pokemon->imageUrl))
+                            <img class="card-img-top" src="{{ $pokemon->imageUrl }}" alt="{{ $pokemon->name }}">
+                        @else
+                            <img class="card-img-top" src="{{asset("img/err.jpg")}}" id="img-err" alt="{{ $pokemon->name }}"/>
+                        @endif
+                        <div class="card-body">
+                            <h5 class="card-title">{{ $pokemon->name }}</h5>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">Rarity: {{ $pokemon->rarity }}</li>
+                            <li class="list-group-item">Series: {{ $pokemon->series }}</li>
+                            <li class="list-group-item">Set: {{ $pokemon->set }}</li>
+                        </ul>
+                        <div class="card-body">
+                            <a href="{{ url('/games/show/' . $pokemon->id ) }}" class="card-link">See More</a>
+                        </div>
+                    </div>
+                @endforeach
             </div>
-
-
-                <div class="card">
-
-                </div>
-
-        @endforeach
+        </div>
     </div>
 
 @stop

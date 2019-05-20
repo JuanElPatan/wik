@@ -24,12 +24,12 @@
         @foreach( $animeJSON as $key => $anime )
 
             <div class="card">
-                    @if ($anime->attributes->posterImage->large)
-                        <img src="{{$anime->attributes->posterImage->large}}" id="img-{{$anime->id}}" style="height:1000px"/>
-                    @else
-                        <img src="{{asset("img/err.jpg")}}" id="img-err"/>
-                    @endif
-                    <div class="card-body">
+                @if ($anime->attributes->posterImage->large)
+                    <img src="{{$anime->attributes->posterImage->large}}" id="img-{{$anime->id}}" style="height:1000px" alt="{{$anime->attributes->titles->en_jp}}"/>
+                @else
+                    <img src="{{asset("img/err.jpg")}}" id="img-err" alt="{{$anime->attributes->titles->en_jp}}"/>
+                @endif
+                <div class="card-body">
                     <h5 class="card-title">{{$anime->attributes->titles->en_jp}}</h5>
                     <p class="card-text">{{$anime->attributes->synopsis}}</p>
 
