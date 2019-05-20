@@ -30,18 +30,26 @@
                     @foreach( $animeJSON as $key => $anime )
 
                 <div class="card" style="width: 18rem;">
-                    @if ($anime->attributes->posterImage->medium)
-                        <a href="{{ url('/anime/show/' . $anime->id ) }}">
+                    @if (isset($anime->attributes->titles->en_jp))
+                        @if (isset($anime->attributes->posterImage->medium))
                             <img src="{{$anime->attributes->posterImage->medium}}" id="img-{{$anime->id}}" width="100%" alt="{{$anime->attributes->titles->en_jp}}"/>
-                        </a>
-                    @else
-                        <a href="{{ url('/anime/show/' . $anime->id ) }}">
+                        @else
                             <img src="{{asset("img/err.jpg")}}" id="img-err" alt="{{$anime->attributes->titles->en_jp}}"/>
-                        </a>
+                        @endif
+                    @else
+                        @if (isset($anime->attributes->posterImage->medium))
+                            <img src="{{$anime->attributes->posterImage->medium}}" id="img-{{$anime->id}}" width="100%" alt="{{$anime->attributes->titles->en_us}}"/>
+                        @else
+                            <img src="{{asset("img/err.jpg")}}" id="img-err" alt="{{$anime->attributes->titles->en_us}}"/>
+                        @endif
                     @endif
                     <div class="card-body">
-                        <h5 class="card-title">{{$anime->attributes->titles->en_jp}}</h5>
-                        <p class="card-text">{{str_limit($anime->attributes->synopsis, 150)}}</p>
+                    @if (isset($anime->attributes->titles->en_jp))
+                    <h5 class="card-title">{{$anime->attributes->titles->en_jp}}</h5>
+                    @else
+                    <h5 class="card-title">{{$anime->attributes->titles->en_us}}</h5>
+                    @endif
+                    <p class="card-text">{{str_limit($anime->attributes->synopsis, 150)}}</p>
 
                         <a href="{{ url('/anime/show/' . $anime->id ) }}">more information</a>
                     </div>
