@@ -33,17 +33,17 @@ Route::get('/anime/edit/{id}', 'AnimeController@getEdit');
 
 Route::post('/anime/edit/{id}', 'AnimeController@postEdit');
 
-Route::get('/games', 'GamesController@getIndex')->name('gamesIn');
+Route::get('/pokemon', 'PokemonController@getIndex')->name('pokemonIn');
 
-Route::get('/games/show/{id}', 'GamesController@getShow');
+Route::get('/pokemon/show/{id}', 'PokemonController@getShow');
 
-Route::get('/games/create', 'GamesController@getCreate');
+Route::get('/pokemon/create', 'PokemonController@getCreate');
 
-Route::post('/games/create', 'GamesController@postCreate');
+Route::post('/pokemon/create', 'PokemonController@postCreate');
 
-Route::get('/games/edit/{id}', 'GamesController@getEdit');
+Route::get('/pokemon/edit/{id}', 'PokemonController@getEdit');
 
-Route::post('/games/edit/{id}', 'GamesController@postEdit');
+Route::post('/pokemon/edit/{id}', 'PokemonController@postEdit');
 
 Auth::routes();
 

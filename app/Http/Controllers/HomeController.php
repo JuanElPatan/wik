@@ -33,8 +33,8 @@ class HomeController extends Controller
     public function getIndexes($request) {
         if($request->option == 'Anime') {
             return redirect()->action('AnimeController@getIndex');
-        } else if ($request->option == 'Games') {
-            return redirect()->action('GamesController@getIndex');
+        } else if ($request->option == 'Pokemon') {
+            return redirect()->action('PokemonController@getIndex');
         } else {
             return null;
         }

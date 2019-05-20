@@ -29,7 +29,7 @@
 
         <div class="row text-center">
             <div class="col-md-12">
-                <a class="btn btn-outline-dark text-dark" href="{{url('/games')}}"><i class="fas fa-angle-left"></i> Volver al listado</a>
+                <a class="btn btn-outline-dark text-dark" href="{{url('/pokemon')}}"><i class="fas fa-angle-left"></i> Volver al listado</a>
             </div>
         </div>
     </div>

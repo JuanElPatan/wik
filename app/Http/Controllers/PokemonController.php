@@ -14,7 +14,7 @@ use DB;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Client;
 
-class GamesController extends Controller
+class PokemonController extends Controller
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
@@ -29,7 +29,7 @@ class GamesController extends Controller
 
             $pokeJSON = json_decode($res->getBody());
 
-            return view('games.index', array('pokeJSON' => $pokeJSON->cards));
+            return view('pokemon.index', array('pokeJSON' => $pokeJSON->cards));
         } else {
             return view('auth.login');
         }
@@ -52,7 +52,7 @@ class GamesController extends Controller
 
             $pokeJSON = json_decode($res->getBody());
 
-            return view('games.show', array('pokeJSON' => $pokeJSON->cards[0]));
+            return view('pokemon.show', array('pokeJSON' => $pokeJSON->cards[0]));
         } else {
             return view('auth.login');
         }
@@ -60,7 +60,7 @@ class GamesController extends Controller
 
     public function getCreate() {
         if(Auth::user()) {
-            return view('games.create');
+            return view('pokemon.create');
         } else {
             return view('auth.login');
         }
@@ -77,7 +77,7 @@ class GamesController extends Controller
             $movie->synopsis = request()->input('resumen');
             $movie->save();
 
-            return view('games.create');
+            return view('pokemon.create');
         } else {
             return view('auth.login');
         }
@@ -85,7 +85,7 @@ class GamesController extends Controller
 
     public function getEdit($id) {
         if(Auth::user()) {
-            return view('games.edit', array('id' => $id, 'pelicula' => DB::table('movies')->having('id', $id)->orderBy('id', 'asc')->first()));
+            return view('pokemon.edit', array('id' => $id, 'pelicula' => DB::table('movies')->having('id', $id)->orderBy('id', 'asc')->first()));
         } else {
             return view('auth.login');
         }
@@ -104,7 +104,7 @@ class GamesController extends Controller
 
             $movie = Movie::findOrFail($id);
 
-            return view('games.show', array('id' => $id, 'pelicula' => $movie));
+            return view('pokemon.show', array('id' => $id, 'pelicula' => $movie));
         } else {
             return view('auth.login');
         }

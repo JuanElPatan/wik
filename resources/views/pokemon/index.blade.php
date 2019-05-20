@@ -1,6 +1,6 @@
     @extends('layouts.master')
 @section('content')
-<h2 style="color: black;">Games</h2>
+<h2 style="color: black;">Pokemon</h2>
 
 <hr/>
 
@@ -14,7 +14,7 @@
 
     <div class="container">
 
-        <form role="form" method="GET" action="{{ action('GamesController@getIndex') }}" class="row">
+        <form role="form" method="GET" action="{{ action('PokemonController@getIndex') }}" class="row">
             <div class="col-md-11">
                 <input type="text" class="form-control" name="pokemon" placeholder="Nombre del Pokemon"/>
             </div>
@@ -48,7 +48,7 @@
                             @endif
                         </ul>
                         <div class="card-body">
-                            <a href="{{ url('/games/show/' . $pokemon->id ) }}" class="card-link">See More</a>
+                            <a href="{{ url('/pokemon/show/' . $pokemon->id ) }}" class="card-link">See More</a>
                         </div>
                     </div>
                 @endforeach
