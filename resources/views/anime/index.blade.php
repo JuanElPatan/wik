@@ -1,7 +1,7 @@
     @extends('layouts.master')
 @section('content')
 
-<h2 style="color: black;">Anime</h2>
+<h2 style="color: black;">Anime Catalogue</h2>
 
 <hr/>
 
