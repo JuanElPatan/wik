@@ -52,7 +52,7 @@ class GamesController extends Controller
 
             $pokeJSON = json_decode($res->getBody());
 
-            return view('games.show', array('pokeJSON' => $pokeJSON->cards));
+            return view('games.show', array('pokeJSON' => $pokeJSON->cards[0]));
         } else {
             return view('auth.login');
         }

@@ -7,7 +7,7 @@
 <div class="row">
     <div class="col-sm-4" style="display: flex; justify-content: center; align-items:center;">
         <a href="#">
-            <img src="{{$pokeJSON->}}" style="height:400px"/>
+            <img src="{{$animeAct->attributes->posterImage->original}}" style="height:400px"/>
         </a>
     </div>
     <div class="col-sm-8">
