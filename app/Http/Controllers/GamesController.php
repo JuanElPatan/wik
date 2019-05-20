@@ -29,6 +29,16 @@ class GamesController extends Controller
         } else {
             return view('auth.login');
         }
+
+        /*if(Auth::user()) {
+            $client = new GuzzleHttp\Client();
+            $res = $client->get('https://kitsu.io/api/edge/anime');
+            $array = json_decode($res->getBody());
+            return view('catalog.index', $array);
+        } else {
+            return view('auth.login');
+        }*/
+
     }
 
     public function getShow($id) {
@@ -95,4 +105,16 @@ class GamesController extends Controller
             return view('auth.login');
         }
     }
+
+    public function saveApiData() {
+        $client = new Client();
+        $res = $client->request('POST', 'https://pokeapi.co/api/v2/pokemon/');
+        echo $res->getStatusCode();
+        // 200
+        echo $res->getHeader('content-type');
+        // 'application/json; charset=utf8'
+        echo $res->getBody();
+        // {"type":"User"...'
+    }
+
 }

@@ -1,13 +1,7 @@
     @extends('layouts.master')
 @section('content')
 
-@php
-
-
-
-@endphp
-
-<h2 style="color: black;">Catalogo de Anime</h2>
+<h2 style="color: black;">Catalogo</h2>
 
 <hr/>
 
