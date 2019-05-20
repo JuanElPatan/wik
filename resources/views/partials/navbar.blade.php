@@ -25,7 +25,7 @@
                                 </a>
                             @elseif (substr(Route::getFacadeRoot()->current()->uri(), 0, 5) == 'anime')
                                 <a class="btn btn-link nav-link" style="display:inline;cursor:pointer" href="{{ route('gamesIn') }} ">
-                                    Games
+                                    Pokémons
                                 </a>
                             @endif
                         <div>
