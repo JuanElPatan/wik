@@ -13,6 +13,9 @@
         </a>
     </div>
     <div class="col-md-8">
+        <div class="col-md-6 offset-md-8">
+            <button class="btn btn-primary">Añadir a favoritos</button>
+        </div>
 
         {{-- TODO: Datos de la película --}}
         @if(isset($pokeJSON->hp))

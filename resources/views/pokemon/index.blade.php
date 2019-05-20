@@ -16,10 +16,10 @@
 
         <form role="form" method="GET" action="{{ action('PokemonController@getIndex') }}" class="row">
             <div class="col-md-11">
-                <input type="text" class="form-control" name="pokemon" placeholder="Nombre del Pokemon"/>
+                <input type="text" class="form-control" name="pokemon" placeholder="Pokemon"/>
             </div>
             <div class="col-md-1">
-                <input type="submit" name="consult" value="Buscar" class="send btn"/>
+                <input type="submit" name="consult" value="Search" class="send btn"/>
             </div>
         </form>
         <br>
