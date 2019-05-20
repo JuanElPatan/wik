@@ -13,7 +13,13 @@
 @endif
 
     <div class="container">
+
         <div class="row">
+
+            <form role="form" method="GET" action="{{ action('GamesController@getIndex') }}" class="row">
+                <input type="text" name="pokemon" placeholder="Nombre del Pokemon"/>
+            </form>
+
             <div class="card-columns">
                 @foreach( $pokeJSON as $key => $pokemon )
 
@@ -26,11 +32,11 @@
                         <div class="card-body">
                             <h5 class="card-title">{{ $pokemon->name }}</h5>
                         </div>
-                        <ul class="list-group list-group-flush">
+                     {{--  <ul class="list-group list-group-flush">
                             <li class="list-group-item">Rarity: {{ $pokemon->rarity }}</li>
                             <li class="list-group-item">Series: {{ $pokemon->series }}</li>
                             <li class="list-group-item">Set: {{ $pokemon->set }}</li>
-                        </ul>
+                        </ul>--}}
                         <div class="card-body">
                             <a href="{{ url('/games/show/' . $pokemon->id ) }}" class="card-link">See More</a>
                         </div>
