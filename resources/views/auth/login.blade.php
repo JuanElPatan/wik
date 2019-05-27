@@ -69,12 +69,16 @@
                 </div>
                 
             </div>
-            <div class="col-md-8 offset-md-5">
-                No have account?
-                <a href="{{ route('register') }}">
-                    {{ __('Sign up') }}
-                </a>
-            </div>
+            <div class="card">
+                <div class="card-header">
+                    <div class="col-md-8 offset-md-5">
+                        No have account?
+                        <a href="{{ route('register') }}">
+                            {{ __('Sign up') }}
+                        </a>
+                    </div>
+                </div>
+            </div> 
         </div>
     </div>
 </div>

@@ -13,6 +13,7 @@ use App\Movie;
 use DB;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Client;
+use App\animefavoritos;
 
 class AnimeController extends Controller
 {
@@ -66,6 +67,54 @@ class AnimeController extends Controller
         } else {
             return view('auth.login');
         }
+    }
+
+    public function saveFavs($id) {
+
+        if(Auth::user()) {
+
+            $favs = new animefavoritos;
+
+            $client = new Client();
+            $res = $client->get('kitsu.io/api/edge/anime/' . $id);
+
+            $t = time();
+
+            $favs->id_animes = $id;
+            $favs->id_user = Auth::user()->id;
+            $favs->jsonAnime = $res->getBody();
+            $favs->created_at = date("Y-m-d",$t);
+            $favs->updated_at = date("Y-m-d",$t);
+            $favs->save();
+
+            return back();
+        } else {
+            return view('auth.login');
+        }
+
+        /*if(Auth::user()) {
+            $client = new GuzzleHttp\Client();
+            $res = $client->get('https://kitsu.io/api/edge/anime');
+            $array = json_decode($res->getBody());
+            return view('catalog.index', $array);
+        } else {
+            return view('auth.login');
+        }*/
+
+    }
+
+    public function getFavs() {
+
+        if(Auth::user()) {
+            $favs = animefavoritos::get()->where('id_user', Auth::user()->id);
+
+            $fav = $favs->map->only(['jsonAnime']);
+
+            return view('anime.favorites', array('favs' => $fav));
+        } else {
+            return view('auth.login');
+        }
+
     }
 
     public function getCreate() {

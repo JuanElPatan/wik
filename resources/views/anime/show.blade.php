@@ -11,9 +11,11 @@
         </a>
     </div>
     <div class="col-sm-8">
-        <div class="col-md-6 offset-md-8">
-            <button class="btn btn-primary">Añadir a favoritos</button>
-        </div>
+        <form method="POST" action="route('anime.show')">
+            <div class="col-md-6 offset-md-8">
+            <a class="btn btn-primary" href="{{ route('animeAddFav', ['id' => $animeAct->id]) }}">Añadir a favoritos</a>
+            </div>
+        </form>
 
         {{-- TODO: Datos de la película --}}
         <h1>{{$animeAct->attributes->titles->en_jp}}</h1>
@@ -28,7 +30,7 @@
             <div class="col-md-12">
                 <a class="btn btn-outline-dark text-dark" href="{{url('/anime')}}"><i class="fas fa-angle-left"></i> Volver al listado</a>
             </div>
-            
+
         </div>
     </div>
 </div>

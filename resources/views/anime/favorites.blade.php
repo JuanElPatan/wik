@@ -1,8 +1,7 @@
-    @extends('layouts.master')
+@extends('layouts.master')
 @section('content')
+<h2 style="color: black;">Personal Favourites - <a style="font-size: 26px;" href="{{ route('animeIn') }}">Anime Index</a></h2>
 
-<h2 style="color: black;">Anime Catalogue</h2>
-<a href="{{ url('/anime/favorites') }}">Favorites</a>
 <hr/>
 
 @if (session('status'))
@@ -25,11 +24,13 @@
         </form>
         <br>
         <div class="row">
-
             <div class="card-columns">
-                    @foreach( $animeJSON as $key => $anime )
+                @foreach( $favs as $key => $anime )
+                    @php
+                        $dp = json_decode($anime['jsonAnime']);
+                    @endphp
 
-                <div class="card" style="width: 18rem;">
+                    <div class="card" style="width: 18rem;">
                     @if (isset($anime->attributes->titles->en_jp))
                         @if (isset($anime->attributes->posterImage->medium))
                             <img src="{{$anime->attributes->posterImage->medium}}" id="img-{{$anime->id}}" width="100%" alt="{{$anime->attributes->titles->en_jp}}"/>
@@ -55,12 +56,12 @@
                     </div>
                 </div>
 
-            @endforeach
-        </div>
 
+                @endforeach
+            </div>
         </div>
-
     </div>
+
 
 @stop
 

@@ -29,6 +29,10 @@ Route::get('/anime/create', 'AnimeController@getCreate');
 
 Route::post('/anime/create', 'AnimeController@postCreate');
 
+Route::get('/animeFavs', 'AnimeController@getFavs')->name('animeFav');
+
+Route::get('/addFav/{id}', 'AnimeController@saveFavs')->name('animeAddFav');
+
 Route::get('/anime/edit/{id}', 'AnimeController@getEdit');
 
 Route::post('/anime/edit/{id}', 'AnimeController@postEdit');
