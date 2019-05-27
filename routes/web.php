@@ -47,6 +47,10 @@ Route::post('/pokemon/edit/{id}', 'PokemonController@postEdit');
 
 Auth::routes();
 
+Route::get('/pokemonFavs', 'PokemonController@getFavs')->name('pokemonFav');
+
+Route::get('/addFav/{id}', 'PokemonController@saveFavs')->name('pokemonAddFav');
+
 Route::get('/home', 'HomeController@getHome')->name('home');
 
 Auth::routes();

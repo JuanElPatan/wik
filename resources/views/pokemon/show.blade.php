@@ -84,10 +84,10 @@
 
         <div class="row text-center">
             <div class="col-md-6">
-                <button class="btn btn-primary">Añadir a favoritos</button>
+                <a class="btn btn-primary" href="{{ route('pokemonAddFav', ['id' => $pokeJSON->id]) }}">Añadir a favoritos</a>
             </div>
             <div class="col-md-6">
-                <a class="btn btn-outline-dark text-dark" href="{{url('/pokemon')}}"><i class="fas fa-angle-left"></i> Volver al listado</a>
+                <a class="btn btn-outline-dark text-dark" href="{{ route('pokemonIn') }}"><i class="fas fa-angle-left"></i> Volver al listado</a>
             </div>
         </div>
     </div>

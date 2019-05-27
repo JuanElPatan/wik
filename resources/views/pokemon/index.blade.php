@@ -1,6 +1,6 @@
     @extends('layouts.master')
 @section('content')
-<h2 style="color: black;">Pokémon Catalogue</h2>
+<h2 style="color: black;">Pokémon Catalogue - <a style="font-size: 26px;" href="{{ route('pokemonFav') }}">Personal Favourites</a></h2>
 
 <hr/>
 

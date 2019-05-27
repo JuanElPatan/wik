@@ -13,6 +13,7 @@ use App\Movie;
 use DB;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Client;
+use App\pokemonfavoritos;
 
 class PokemonController extends Controller
 {
@@ -42,6 +43,54 @@ class PokemonController extends Controller
         } else {
             return view('auth.login');
         }*/
+
+    }
+
+    public function saveFavs($id) {
+
+        if(Auth::user()) {
+
+            $favs = new pokemonfavoritos;
+
+            $client = new Client();
+            $res = $client->get('https://api.pokemontcg.io/v1/cards?id=' . $id);
+
+            $t = time();
+
+            $favs->id_pokemon = $id;
+            $favs->id_user = Auth::user()->id;
+            $favs->jsonPokemon = $res->getBody();
+            $favs->created_at = date("Y-m-d",$t);
+            $favs->updated_at = date("Y-m-d",$t);
+            $favs->save();
+
+            return back();
+        } else {
+            return view('auth.login');
+        }
+
+        /*if(Auth::user()) {
+            $client = new GuzzleHttp\Client();
+            $res = $client->get('https://kitsu.io/api/edge/anime');
+            $array = json_decode($res->getBody());
+            return view('catalog.index', $array);
+        } else {
+            return view('auth.login');
+        }*/
+
+    }
+
+    public function getFavs() {
+
+        if(Auth::user()) {
+            $favs = pokemonfavoritos::get()->where('id_user', Auth::user()->id);
+
+            $fav = $favs->map->only(['jsonPokemon']);
+
+            return view('pokemon.fav', array('favs' => $fav));
+        } else {
+            return view('auth.login');
+        }
 
     }
 
