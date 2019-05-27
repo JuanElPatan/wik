@@ -35,15 +35,6 @@ class PokemonController extends Controller
             return view('auth.login');
         }
 
-        /*if(Auth::user()) {
-            $client = new GuzzleHttp\Client();
-            $res = $client->get('https://kitsu.io/api/edge/anime');
-            $array = json_decode($res->getBody());
-            return view('catalog.index', $array);
-        } else {
-            return view('auth.login');
-        }*/
-
     }
 
     public function saveFavs($id) {
@@ -69,14 +60,23 @@ class PokemonController extends Controller
             return view('auth.login');
         }
 
-        /*if(Auth::user()) {
-            $client = new GuzzleHttp\Client();
-            $res = $client->get('https://kitsu.io/api/edge/anime');
-            $array = json_decode($res->getBody());
-            return view('catalog.index', $array);
+    }
+
+    public function removeFavs($id) {
+
+        if(Auth::user()) {
+
+            $client = new Client();
+            $res = $client->get('https://api.pokemontcg.io/v1/cards?id=' . $id);
+
+            $pokeJSON = json_decode($res->getBody());
+
+            DB::table('pokemonfavoritos')->where('id_pokemon', $id)->where('id_user', Auth::user()->id)->delete();
+
+            return view('pokemon.index', array('pokeJSON' => $pokeJSON->cards));
         } else {
             return view('auth.login');
-        }*/
+        }
 
     }
 
@@ -101,7 +101,15 @@ class PokemonController extends Controller
 
             $pokeJSON = json_decode($res->getBody());
 
-            return view('pokemon.show', array('pokeJSON' => $pokeJSON->cards[0]));
+            $favs = DB::table('pokemonfavoritos')->where('id_pokemon', $id)->where('id_user', Auth::user()->id)->first();
+
+            // if (isset($favs->id_pokemon)) {
+            //     $fav = 0;
+            // } else {
+            //     $fav = $favs->id_pokemon;
+            // }
+
+            return view('pokemon.show', array('pokeJSON' => $pokeJSON->cards[0], 'favs' => $favs));
         } else {
             return view('auth.login');
         }

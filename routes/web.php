@@ -55,6 +55,8 @@ Route::get('/pokemonFavs', 'PokemonController@getFavs')->name('pokemonFav');
 
 Route::get('/addFav/{id}', 'PokemonController@saveFavs')->name('pokemonAddFav');
 
+Route::get('/remFav/{id}', 'PokemonController@removeFavs')->name('pokemonRemFav');
+
 Route::get('/home', 'HomeController@getHome')->name('home');
 
 Auth::routes();
